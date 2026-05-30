@@ -1,0 +1,26 @@
+# --- Orchestration / LLM ---
+langgraph>=0.2.50
+langchain>=0.3.0
+langchain-anthropic>=0.3.0
+anthropic>=0.40.0
+
+# --- Forecasting / Data ---
+statsforecast>=1.7.0
+pandas>=2.2.0
+numpy>=1.26.0
+duckdb>=1.1.0
+pyarrow>=15.0.0
+
+# --- UI ---
+streamlit>=1.40.0
+plotly>=5.20.0
+
+# --- Utilities ---
+python-dotenv>=1.0.0
+pydantic>=2.7.0
+tenacity>=8.2.0
+
+# --- Dev ---
+pytest>=8.0.0
+black>=24.0.0
+ruff>=0.5.0
