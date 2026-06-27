@@ -3,6 +3,8 @@ langgraph>=0.2.50
 langchain>=0.3.0
 langchain-anthropic>=0.3.0
 anthropic>=0.40.0
+google-genai>=0.3.0        # Gemini path (used for the public HF Spaces demo)
+ollama>=0.4.0              # local llama3.1 path (dev only, harmless on HF)
 
 # --- Forecasting / Data ---
 statsforecast>=1.7.0

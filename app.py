@@ -142,13 +142,15 @@ st.markdown("""
 
 st.divider()
 
-# ── DB check ──────────────────────────────────────────────────────────────────
+# ── DB check (auto-bootstrap on first run, e.g. Hugging Face Spaces) ──────────
 if not Path(db_path).exists():
-    st.warning("**Database not found.** Run `python data/load_m5.py` first, then refresh.", icon="⚠️")
-    st.stop()
+    with st.spinner("First-time setup: building synthetic M5 dataset (about 30 seconds)…"):
+        from data.load_m5 import load as _load_db
+        _load_db(force=True)
+    st.rerun()
 
 # ── Conversation — render each message + its attached charts ──────────────────
-for msg in st.session_state.messages:
+for i, msg in enumerate(st.session_state.messages):
     render_message(msg["role"], msg["content"])
 
     # Charts are stored with each assistant message — persist across turns
@@ -156,9 +158,9 @@ for msg in st.session_state.messages:
         fc  = msg.get("forecast")
         anom = msg.get("anomalies")
         if fc and "forecast" in fc:
-            render_forecast_chart(fc)
+            render_forecast_chart(fc, key=f"fc_{i}")
         if anom:
-            render_anomaly_chart(anom)
+            render_anomaly_chart(anom, key=f"anom_{i}")
 
 # ── Pending query from sidebar buttons ────────────────────────────────────────
 pending    = st.session_state.pop("pending_query", None)

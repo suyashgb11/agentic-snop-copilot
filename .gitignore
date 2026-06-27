@@ -18,3 +18,7 @@ data/*.csv
 # IDE
 .vscode/
 .idea/
+
+# Temp / scratch scripts
+_scratch/
+
